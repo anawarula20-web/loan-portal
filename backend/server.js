@@ -13,7 +13,7 @@ const app = express();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://your-frontend-name.vercel.app"
+    "https://loan-portal-phi.vercel.app"
   ],
   credentials: true
 }));
