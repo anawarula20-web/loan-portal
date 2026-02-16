@@ -23,6 +23,16 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/loans", loanRoutes);
 
+// Root route for testing
+app.get("/", (req, res) => {
+  res.send("Backend is running ✅");
+});
+
+// Health check route for Render
+app.get("/api/health", (req, res) => {
+  res.status(200).json({ status: "OK" });
+});
+
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
