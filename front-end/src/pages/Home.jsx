@@ -29,9 +29,9 @@ export default function Home() {
 
       {/* Loan Cards */}
       <div className="grid md:grid-cols-3 gap-8 px-10 pb-20">
-        <LoanCard title="Personal Loan" amount="5,00,000" />
-        <LoanCard title="Business Loan" amount="10,00,000" />
-        <LoanCard title="Home Loan" amount="50,00,000" />
+        <LoanCard title="Personal Loan" company="CHOLA FINANCE" amount="10,00,000" image="https://loanjagat-appven.s3.ap-south-1.amazonaws.com/1756895977500_blob" />
+        <LoanCard title="Business Loan" company="BAJAJ FINANCE" amount="30,00,000" image="https://res.cloudinary.com/jerrick/image/upload/v1661918605/630edd8cd55438001e52ab32.jpg" />
+        <LoanCard title="Home Loan" company="RBL FINANCE" amount="50,00,000" image="https://img.etimg.com/thumb/width-1600,height-900,imgsize-1498184,resizemode-75,msid-129646744/wealth/borrow/lowest-home-loan-interest-rates-sbi-vs-hdfc-bank-vs-icici-bank-vs-canara-bank-which-bank-offers-lowest-emi-top-bank-rates-compared.jpg" />
       </div>
     </div>
   );

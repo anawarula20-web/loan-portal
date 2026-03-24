@@ -8,8 +8,9 @@ export default function Signup() {
     name: "",
     mobile: "",
     email: "",
-    pan: "",
-    password: ""
+    dob: "",
+    password: "",
+    confirmPassword: ""
   });
 
   const handleChange = (e) =>
@@ -18,10 +19,18 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // 🔐 Password match validation
+  if (form.password !== form.confirmPassword) {
+    alert("Password do not match");
+    return;
+  }
+
+  const { confirmPassword: _, ...userData } = form;
+
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/signup`,
-        form
+        userData
       );
 
       alert(res.data.message);
@@ -37,24 +46,29 @@ export default function Signup() {
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg w-96">
         <h2 className="text-2xl font-bold mb-6 text-center">Signup</h2>
 
-        <input name="name" placeholder="Name" required
+        <input type="text" name="name" placeholder="Full Name" pattern="[A-Za-z\s]+" required
           onChange={handleChange}
           className="border p-2 w-full mb-3 rounded" />
 
-        <input name="mobile" placeholder="Mobile No" required
+        <input type="text" name="mobile" placeholder="Mobile No" maxLength="10" pattern="[0-9]{10}" required
           onChange={handleChange}
           className="border p-2 w-full mb-3 rounded" />
 
-        <input name="email" placeholder="Email"
+        <input type="email" name="email" placeholder="Email"
           onChange={handleChange}
           className="border p-2 w-full mb-3 rounded" />
 
-        <input name="pan" placeholder="PAN No"
+        <input type="date" name="dob" required
           onChange={handleChange}
           className="border p-2 w-full mb-3 rounded" />
 
         <input type="password" name="password"
-          placeholder="Password" required
+          placeholder="Password" minLength="6" required
+          onChange={handleChange}
+          className="border p-2 w-full mb-4 rounded" />
+
+        <input type="password" name="confirmPassword"
+          placeholder="Confirm Password" required
           onChange={handleChange}
           className="border p-2 w-full mb-4 rounded" />
 

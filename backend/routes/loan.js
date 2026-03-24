@@ -1,17 +1,21 @@
 import express from "express";
 import Loan from "../models/Loan.js";
+import { upload } from "../middleware/upload.js";
 
 const router = express.Router();
 
 // Apply Loan
-router.post("/apply", async (req, res) => {
+router.post("/apply", upload.single("uploadPan"), async (req, res) => {
   try {
-    const { userId, amount, tenure, purpose } = req.body;
+    const { userId, loanType, requiredAmount, pan, purpose } = req.body;
+    const panFilePath = req.file ? req.file.path : "uploads/pan";
 
     const loan = await Loan.create({
       userId,
-      amount,
-      tenure,
+      loanType,
+      requiredAmount,
+      pan,
+      uploadPan: req.file.path, // Store file path in DB
       purpose
     });
 
